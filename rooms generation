@@ -1,0 +1,795 @@
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local TweenService = game:GetService("TweenService")
+local test = false
+local plr = Players.LocalPlayer
+local char = plr.Character or plr.CharacterAdded:Wait()
+local hrp = char:WaitForChild("HumanoidRootPart")
+
+local function addReverb(v)
+	if not v:IsA("Sound") then
+		return
+	end
+
+	if v:FindFirstChild("LobbyReverb") then
+		return
+	end
+
+	local reverb = Instance.new("ReverbSoundEffect")
+	reverb.Name = "LobbyReverb"
+	reverb.DecayTime = 8
+	reverb.Density = 1
+	reverb.Diffusion = 1
+	reverb.DryLevel = 0
+	reverb.WetLevel = -2
+	reverb.Parent = v
+end
+
+for _, v in ipairs(game:GetDescendants()) do
+	addReverb(v)
+end
+
+game.DescendantAdded:Connect(addReverb)
+
+local asset = game:GetObjects("rbxassetid://17210290509")[1]
+
+if not asset then
+	return
+end
+
+asset.Parent = workspace
+
+if asset:IsA("Model") then
+	asset:PivotTo(
+		hrp.CFrame * CFrame.new(0, 0, -10)
+	)
+elseif asset:IsA("BasePart") then
+	asset.CFrame =
+		hrp.CFrame * CFrame.new(0, 0, -10)
+end
+
+local assetWorkspace =
+	asset:FindFirstChild("Workspace")
+
+if not assetWorkspace then
+	return
+end
+
+local start =
+	assetWorkspace:FindFirstChild("start")
+
+if not start then
+	return
+end
+
+local serverStorage =
+	asset:FindFirstChild("ServerStorage")
+
+if not serverStorage then
+	return
+end
+
+local rooms =
+	serverStorage:FindFirstChild("rooms")
+
+if not rooms then
+	return
+end
+
+rooms.Parent =
+	ReplicatedStorage
+
+local function LoadModel(file, url)
+	if not isfile(file) then
+		writefile(file, game:HttpGet(url))
+	end
+
+	local objects =
+		game:GetObjects(
+			getcustomasset(file)
+		)
+
+	return objects[1]
+end
+
+local customRoom5 = LoadModel(
+	"custom_room_5.txt",
+	"https://github.com/PAKKALCKKWKKJXIODKRBFHHAUJCJJJSNDJ/HAXRHCHHCHCHJSJSLKKKJDPQOIJXHBS/raw/refs/heads/main/Place_123974602339071_Model_room5_1788321333.txt"
+)
+
+if customRoom5
+	and customRoom5:IsA("Model") then
+
+	customRoom5.Parent =
+		rooms
+end
+
+local tallroom = LoadModel(
+	"tall_room.txt",
+	"https://github.com/PAKKALCKKWKKJXIODKRBFHHAUJCJJJSNDJ/HAXRHCHHCHCHJSJSLKKKJDPQOIJXHBS/raw/refs/heads/main/Place_123974602339071_Model_tallroomREAL_1788322384.txt"
+)
+
+if tallroom
+	and tallroom:IsA("Model") then
+
+	tallroom.Parent =
+		rooms
+end
+
+local customTwoWayRoom = LoadModel(
+	"custom_twoway_room.txt",
+	"https://github.com/PAKKALCKKWKKJXIODKRBFHHAUJCJJJSNDJ/HAXRHCHHCHCHJSJSLKKKJDPQOIJXHBS/raw/refs/heads/main/Place_123974602339071_Model_TwowayroomsREAL_1788320720.txt"
+)
+
+if customTwoWayRoom
+	and customTwoWayRoom:IsA("Model") then
+
+	customTwoWayRoom.Parent =
+		rooms
+end
+
+local customRooms = {}
+
+if customRoom5
+	and customRoom5:IsA("Model") then
+
+	customRooms[customRoom5] = true
+end
+
+if tallroom
+	and tallroom:IsA("Model") then
+
+	customRooms[tallroom] = true
+end
+
+if customTwoWayRoom
+	and customTwoWayRoom:IsA("Model") then
+
+	customRooms[customTwoWayRoom] = true
+end
+
+local floor
+
+for _, v in ipairs(start:GetDescendants()) do
+	if v:IsA("BasePart")
+		and string.find(
+			string.lower(v.Name),
+			"floor",
+			1,
+			true
+		) then
+
+		floor = v
+		break
+	end
+end
+
+if floor then
+	local topY =
+		floor.Position.Y +
+		floor.Size.Y / 2
+
+	hrp.CFrame =
+		CFrame.new(
+			floor.Position.X,
+			topY + hrp.Size.Y / 2,
+			floor.Position.Z
+		)
+end
+
+local assetEndPart =
+	start:FindFirstChild("EndPart")
+
+if not assetEndPart
+	or not assetEndPart:IsA("BasePart") then
+
+	return
+end
+
+local roomNumber = 1
+
+local function setRoomNumber(room)
+	roomNumber += 1
+
+	local number =
+		string.format(
+			"A-%03d",
+			roomNumber
+		)
+
+	for _, v in ipairs(room:GetDescendants()) do
+		local name =
+			string.lower(v.Name)
+
+		if name == "label"
+			or string.match(
+				name,
+				"^label%d+$"
+			) then
+
+			local sg =
+				v:FindFirstChild("sg")
+
+			if sg then
+				local text =
+					sg:FindFirstChild("text")
+
+				if text
+					and text:IsA("TextLabel") then
+
+					text.Text =
+						number
+				end
+			end
+		end
+	end
+end
+
+local function getTemplates()
+	local folder =
+		ReplicatedStorage:FindFirstChild("rooms")
+
+	if not folder then
+		return {}
+	end
+
+	local list = {}
+
+	for _, v in ipairs(folder:GetChildren()) do
+		if v:IsA("Model") then
+
+			if test then
+				if customRooms[v] then
+					table.insert(
+						list,
+						v
+					)
+				end
+			else
+				table.insert(
+					list,
+					v
+				)
+			end
+
+		end
+	end
+
+	return list
+end
+
+local function getPart(room, name)
+	local part =
+		room:FindFirstChild(
+			name,
+			true
+		)
+
+	if part
+		and part:IsA("BasePart") then
+
+		return part
+	end
+
+	return nil
+end
+
+local function getStartPart(room)
+	return getPart(
+		room,
+		"StartPart"
+	)
+end
+
+local function placeRoom(room, target)
+	local startPart =
+		getStartPart(room)
+
+	if not startPart
+		or not target then
+
+		return false
+	end
+
+	local pivot =
+		room:GetPivot()
+
+	local offset =
+		pivot:ToObjectSpace(
+			startPart.CFrame
+		)
+
+	local newPivot =
+		target.CFrame *
+		offset:Inverse()
+
+	room:PivotTo(
+		newPivot
+	)
+
+	return true
+end
+
+local function getExit(room, index)
+	local suffix = ""
+
+	if index > 1 then
+		suffix =
+			tostring(index)
+	end
+
+	local door =
+		getPart(
+			room,
+			"door" .. suffix
+		)
+
+	local doorTween =
+		getPart(
+			room,
+			"doortween" .. suffix
+		)
+
+	local endPart =
+		getPart(
+			room,
+			"EndPart" .. suffix
+		)
+
+	if door
+		and doorTween
+		and endPart then
+
+		return {
+			door = door,
+			doorTween = doorTween,
+			endPart = endPart,
+			index = index
+		}
+	end
+
+	return nil
+end
+
+local function getExits(room)
+	local exits = {}
+	local index = 1
+
+	while true do
+		local exit =
+			getExit(
+				room,
+				index
+			)
+
+		if not exit then
+			break
+		end
+
+		table.insert(
+			exits,
+			exit
+		)
+
+		index += 1
+	end
+
+	return exits
+end
+
+local generatedRooms = {}
+
+local function roomFits(room, targetEndPart)
+	local parentRoom =
+		targetEndPart:FindFirstAncestorOfClass("Model")
+
+	local params =
+		OverlapParams.new()
+
+	params.FilterType =
+		Enum.RaycastFilterType.Exclude
+
+	local ignore = {
+		room
+	}
+
+	if parentRoom then
+		table.insert(
+			ignore,
+			parentRoom
+		)
+	end
+
+	params.FilterDescendantsInstances =
+		ignore
+
+	params.MaxParts = 100
+
+	for _, part in ipairs(room:GetDescendants()) do
+		if part:IsA("BasePart")
+			and part.CanQuery
+			and part.CanCollide then
+
+			local hits =
+				workspace:GetPartBoundsInBox(
+					part.CFrame,
+					part.Size,
+					params
+				)
+
+			for _, hit in ipairs(hits) do
+				if hit:IsA("BasePart")
+					and hit.CanQuery
+					and hit.CanCollide then
+
+					local otherRoom =
+						hit:FindFirstAncestorOfClass("Model")
+
+					if otherRoom
+						and otherRoom ~= room
+						and generatedRooms[otherRoom] then
+
+						return false
+					end
+				end
+			end
+		end
+	end
+
+	return true
+end
+
+local usedEndParts = {}
+
+local spawnNextRoom
+
+local setupRoomPrompt
+
+setupRoomPrompt = function(
+	room,
+	door,
+	doorTween,
+	endPart
+)
+	if not door
+		or not doorTween
+		or not endPart then
+
+		return
+	end
+
+	local oldPrompt =
+		door:FindFirstChildOfClass(
+			"ProximityPrompt"
+		)
+
+	if oldPrompt then
+		oldPrompt:Destroy()
+	end
+
+	local prompt =
+		Instance.new(
+			"ProximityPrompt"
+		)
+
+	prompt.ActionText =
+		"Open Door"
+
+	prompt.ObjectText =
+		""
+
+	prompt.HoldDuration =
+		0
+
+	prompt.MaxActivationDistance =
+		10
+
+	prompt.RequiresLineOfSight =
+		false
+
+	prompt.Parent =
+		door
+
+	local triggered = false
+
+	prompt.Triggered:Connect(
+		function(player)
+			if player ~= plr
+				or triggered then
+
+				return
+			end
+
+			triggered = true
+
+			prompt:Destroy()
+
+			local sfx =
+				door:FindFirstChild(
+					"sfx"
+				)
+
+			if sfx
+				and sfx:IsA("Sound") then
+
+				sfx:Stop()
+				sfx:Play()
+			end
+
+			TweenService:Create(
+				door,
+				TweenInfo.new(
+					0.8,
+					Enum.EasingStyle.Bounce,
+					Enum.EasingDirection.InOut
+				),
+				{
+					CFrame =
+						doorTween.CFrame
+				}
+			):Play()
+
+			task.spawn(
+				function()
+					spawnNextRoom(
+						endPart
+					)
+				end
+			)
+		end
+	)
+end
+
+local function setupRoomExits(room)
+	local exits =
+		getExits(room)
+
+	for _, exit in ipairs(exits) do
+		setupRoomPrompt(
+			room,
+			exit.door,
+			exit.doorTween,
+			exit.endPart
+		)
+	end
+
+	return #exits
+end
+
+spawnNextRoom = function(targetEndPart)
+	if not targetEndPart
+		or not targetEndPart.Parent then
+
+		return nil
+	end
+
+	if usedEndParts[targetEndPart] then
+		return nil
+	end
+
+	local templates =
+		getTemplates()
+
+	if #templates == 0 then
+		return nil
+	end
+
+	local attempts = 0
+	local maxAttempts = 100
+
+	while attempts < maxAttempts do
+		attempts += 1
+
+		local selected =
+			templates[
+				math.random(
+					1,
+					#templates
+				)
+			]
+
+		local room =
+			selected:Clone()
+
+		room.Parent =
+			workspace
+
+		local placed =
+			placeRoom(
+				room,
+				targetEndPart
+			)
+
+		if placed then
+			task.wait()
+
+			local fits =
+				roomFits(
+					room,
+					targetEndPart
+				)
+
+			if fits then
+				local exitCount =
+					#getExits(room)
+
+				if exitCount > 0 then
+					usedEndParts[targetEndPart] =
+						true
+
+					generatedRooms[room] =
+						true
+
+					setRoomNumber(
+						room
+					)
+
+					setupRoomExits(
+						room
+					)
+
+					return room
+				end
+			end
+		end
+
+		room:Destroy()
+
+		task.wait()
+	end
+
+	return nil
+end
+
+local templates =
+	getTemplates()
+
+if #templates == 0 then
+	return
+end
+
+local firstRoom
+
+local attempts = 0
+local maxAttempts = 100
+
+while attempts < maxAttempts do
+	attempts += 1
+
+	local firstTemplate =
+		templates[
+			math.random(
+				1,
+				#templates
+			)
+		]
+
+	local candidate =
+		firstTemplate:Clone()
+
+	candidate.Parent =
+		workspace
+
+	if placeRoom(
+		candidate,
+		assetEndPart
+	) then
+
+		task.wait()
+
+		if roomFits(
+			candidate,
+			assetEndPart
+		) then
+
+			if #getExits(candidate) > 0 then
+				firstRoom =
+					candidate
+
+				break
+			end
+		end
+	end
+
+	candidate:Destroy()
+
+	task.wait()
+end
+
+if not firstRoom then
+	return
+end
+
+generatedRooms[firstRoom] =
+	true
+
+usedEndParts[assetEndPart] =
+	true
+
+setRoomNumber(
+	firstRoom
+)
+
+setupRoomExits(
+	firstRoom
+)
+
+local assetDoor =
+	start:FindFirstChild(
+		"door"
+	)
+
+local assetDoorTween =
+	start:FindFirstChild(
+		"doortween"
+	)
+
+if assetDoor
+	and assetDoor:IsA("BasePart")
+	and assetDoorTween
+	and assetDoorTween:IsA("BasePart") then
+
+	local prompt =
+		Instance.new(
+			"ProximityPrompt"
+		)
+
+	prompt.ActionText =
+		"Open Door"
+
+	prompt.ObjectText =
+		""
+
+	prompt.HoldDuration =
+		0
+
+	prompt.MaxActivationDistance =
+		10
+
+	prompt.RequiresLineOfSight =
+		false
+
+	prompt.Parent =
+		assetDoor
+
+	local triggered = false
+
+	prompt.Triggered:Connect(
+		function(player)
+			if player ~= plr
+				or triggered then
+
+				return
+			end
+
+			triggered = true
+
+			prompt:Destroy()
+
+			local sfx =
+				assetDoor:FindFirstChild(
+					"sfx"
+				)
+
+			if sfx
+				and sfx:IsA("Sound") then
+
+				sfx:Stop()
+				sfx:Play()
+			end
+
+			TweenService:Create(
+				assetDoor,
+				TweenInfo.new(
+					0.8,
+					Enum.EasingStyle.Bounce,
+					Enum.EasingDirection.InOut
+				),
+				{
+					CFrame =
+						assetDoorTween.CFrame
+				}
+			):Play()
+		end
+	)
+end
