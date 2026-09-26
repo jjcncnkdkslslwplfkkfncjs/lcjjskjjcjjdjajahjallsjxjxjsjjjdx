@@ -1,0 +1,260 @@
+-- ts file was generated at discord.gg/25ms
+
+GitAud = function(p1, p2)
+    SoundName = tostring(SoundName)
+
+    writefile(p2 .. '.mp3', game:HttpGet(p1))
+
+    return (getcustomasset or getsynasset)(p2 .. '.mp3')
+end
+CustomGitSound = function(p3, _, p4)
+    local _Sound = Instance.new('Sound')
+
+    _Sound.SoundId = GitAud(p3, p4)
+    _Sound.Parent = workspace
+    _Sound.Name = 'SpawnPinkGubber'
+    _Sound.PlaybackSpeed = 3
+    _Sound.Volume = 3
+
+    _Sound:Play()
+end
+
+CustomGitSound('https://github.com/DoorsHubs/Tutorial/raw/refs/heads/main/lv_0_20250602152425.mp3?raw=true', 1, ' SpawnPinkGoober')
+
+game.Lighting.MainColorCorrection.TintColor = Color3.fromRGB(255, 3, 251)
+game.Lighting.MainColorCorrection.Contrast = 10
+
+game:GetService('TweenService'):Create(game.Lighting.MainColorCorrection, TweenInfo.new(2.5), {Contrast = 0}):Play()
+game:GetService('TweenService'):Create(game.Lighting.MainColorCorrection, TweenInfo.new(5), {
+    TintColor = Color3.fromRGB(255, 255, 255),
+}):Play()
+
+local _LocalPlayer = game.Players.LocalPlayer
+local u = _LocalPlayer.Character or _LocalPlayer.CharacterAdded:Wait()
+local _ = workspace.CurrentCamera
+local u1 = true
+
+game:GetService('TweenService')
+
+local v = game:GetObjects('rbxassetid://113652131287587')[1]
+
+v.Parent = workspace
+v.Name = 'Fugitive'
+v:FindFirstChildWhichIsA('BasePart').CFrame = workspace.CurrentRooms:FindFirstChild(game.ReplicatedStorage.GameData.LatestRoom.Value):WaitForChild('RoomEntrance').CFrame * CFrame.new(math.random(-5, 5), 0, -15)
+
+wait(3)
+
+GitAud = function(p5, p6)
+    SoundName = tostring(SoundName)
+
+    writefile(p6 .. '.mp3', game:HttpGet(p5))
+
+    return (getcustomasset or getsynasset)(p6 .. '.mp3')
+end
+CustomGitSound = function(p7, _, p8)
+    local _Sound2 = Instance.new('Sound')
+
+    _Sound2.SoundId = GitAud(p7, p8)
+    _Sound2.Parent = workspace
+    _Sound2.Name = "Fu's Voiceline1"
+    _Sound2.PlaybackSpeed = 1
+    _Sound2.Volume = 1.5
+
+    _Sound2:Play()
+end
+
+CustomGitSound('https://github.com/DoorsHubs/Tutorial/raw/refs/heads/main/XRecorder_Edited_20250614_17.mp3?raw=true', 1, ' FugitiveVoiceline1')
+
+game.Players.LocalPlayer:WaitForChild('PlayerGui').MainUI.MainFrame.Caption.TextColor3 = Color3.fromRGB(255, 3, 251)
+
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption('10 seconds to hide..', true)
+wait(3)
+
+GitAud = function(p9, p10)
+    SoundName = tostring(SoundName)
+
+    writefile(p10 .. '.mp3', game:HttpGet(p9))
+
+    return (getcustomasset or getsynasset)(p10 .. '.mp3')
+end
+CustomGitSound = function(p11, _, p12)
+    local _Sound3 = Instance.new('Sound')
+
+    _Sound3.SoundId = GitAud(p11, p12)
+    _Sound3.Parent = workspace
+    _Sound3.Name = "Fu's Voiceline2"
+    _Sound3.PlaybackSpeed = 1
+    _Sound3.Volume = 1.5
+
+    _Sound3:Play()
+end
+
+CustomGitSound('https://github.com/DoorsHubs/Tutorial/raw/refs/heads/main/XRecorder_Edited_20250614_16.mp3?raw=true', 1, ' FugitiveVoiceline2')
+
+
+
+game.Players.LocalPlayer:WaitForChild('PlayerGui').MainUI.MainFrame.Caption.TextColor3 = Color3.fromRGB(255, 3, 251)
+
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption('10', true)
+wait(1)
+
+game.Players.LocalPlayer:WaitForChild('PlayerGui').MainUI.MainFrame.Caption.TextColor3 = Color3.fromRGB(255, 3, 251)
+
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption('9', true)
+wait(1)
+
+game.Players.LocalPlayer:WaitForChild('PlayerGui').MainUI.MainFrame.Caption.TextColor3 = Color3.fromRGB(255, 3, 251)
+
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption('8', true)
+wait(1)
+
+game.Players.LocalPlayer:WaitForChild('PlayerGui').MainUI.MainFrame.Caption.TextColor3 = Color3.fromRGB(255, 3, 251)
+
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption('7', true)
+wait(1)
+
+game.Players.LocalPlayer:WaitForChild('PlayerGui').MainUI.MainFrame.Caption.TextColor3 = Color3.fromRGB(255, 3, 251)
+
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption('6', true)
+wait(1)
+
+game.Players.LocalPlayer:WaitForChild('PlayerGui').MainUI.MainFrame.Caption.TextColor3 = Color3.fromRGB(255, 3, 251)
+
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption('5', true)
+wait(1)
+
+game.Players.LocalPlayer:WaitForChild('PlayerGui').MainUI.MainFrame.Caption.TextColor3 = Color3.fromRGB(255, 3, 251)
+
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption('4', true)
+wait(1)
+
+game.Players.LocalPlayer:WaitForChild('PlayerGui').MainUI.MainFrame.Caption.TextColor3 = Color3.fromRGB(255, 3, 251)
+
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption('3', true)
+wait(1)
+
+game.Players.LocalPlayer:WaitForChild('PlayerGui').MainUI.MainFrame.Caption.TextColor3 = Color3.fromRGB(255, 3, 251)
+
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption('2', true)
+wait(1)
+
+game.Players.LocalPlayer:WaitForChild('PlayerGui').MainUI.MainFrame.Caption.TextColor3 = Color3.fromRGB(255, 3, 251)
+
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption('1', true)
+wait(1)
+local TweenService = game:GetService("TweenService")
+
+local DamageLoop = true
+local Crucified = false
+local DamageThread
+local no = false
+
+DamageThread = task.spawn(function()
+	while DamageLoop do
+		task.wait(0.5)
+
+		if not u:GetAttribute("Hiding") and u1 == true then
+
+			local Crucifix = u:FindFirstChild("Crucifix")
+
+			if Crucifix then
+				DamageLoop = false
+				Crucified = true
+				no = true
+				
+				task.spawn(function() 
+				task.wait(1)
+				require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption('YOU WILL REGRET THAT! ', true)
+				CustomGitSound('https://github.com/jjcncnkdkslslwplfkkfncjs/lcjjskjjcjjdjajahjallsjxjxjsjjjdx/raw/refs/heads/main/CRUCIFIXFUG.mp3?raw=true', 1, ' jckdkkjcjcjjf')
+				end) 
+
+				local Target = v:FindFirstChildWhichIsA("BasePart")
+
+				if Target then
+					Target.Anchored = true
+					Target.CanCollide = false
+				end
+
+				local CrucifixEntity = loadstring(game:HttpGet(
+						"https://raw.githubusercontent.com/PAKKALCKKWKKJXIODKRBFHHAUJCJJJSNDJ/piuyqykpcbbejsjbxhdkkksiaokdjhhsjsjhhxhhd/refs/heads/main/crucifix"
+					))()
+
+					CrucifixEntity({
+						Target = Target,
+						Resist = false,
+						RequiredDistance = 1000000,
+						Color = Color3.fromRGB(102, 255, 94),
+						Symbol = "rbxassetid://74315605130363"
+					})
+
+				return
+			end
+
+			u.Humanoid:TakeDamage(100)
+
+			firesignal(game.ReplicatedStorage.RemotesFolder.DeathHint.OnClientEvent, {
+				"You died to who you call Fugitive...",
+				"She spawns in center of room and She will damage you if you dont hide in time",
+				"I believe in you!",
+			}, "Blue")
+
+			game.ReplicatedStorage.GameStats[
+				"Player_" .. game.Players.LocalPlayer.Name
+			].Total.DeathCause.Value = "Fugitive"
+		end
+	end
+end)
+
+if no == false then
+
+wait(5)
+
+game.Lighting.MainColorCorrection.TintColor = Color3.fromRGB(0, 0, 0)
+game.Lighting.MainColorCorrection.Contrast = 10
+
+game:GetService('TweenService'):Create(game.Lighting.MainColorCorrection, TweenInfo.new(2.5), {Contrast = 0}):Play()
+wait(1)
+game:GetService('TweenService'):Create(game.Lighting.MainColorCorrection, TweenInfo.new(5), {
+    TintColor = Color3.fromRGB(255, 255, 255),
+}):Play()
+
+local _Sound4 = Instance.new('Sound')
+
+_Sound4.Parent = game.Workspace
+_Sound4.Name = 'Spawn'
+_Sound4.SoundId = 'rbxassetid://7053083974'
+_Sound4.Volume = 5
+_Sound4.PlaybackSpeed = 1
+
+_Sound4:Play()
+v:Destroy()
+
+u1 = false
+
+wait(3)
+
+local _Sound5 = Instance.new('Sound')
+
+_Sound5.Parent = game.Workspace
+_Sound5.Name = 'Spawn'
+_Sound5.SoundId = 'rbxassetid://1201103772'
+_Sound5.Volume = 1
+_Sound5.PlaybackSpeed = 1.5
+
+_Sound5:Play()
+
+game.Lighting.MainColorCorrection.TintColor = Color3.fromRGB(255, 107, 8)
+game.Lighting.MainColorCorrection.Contrast = 10
+
+game:GetService('TweenService'):Create(game.Lighting.MainColorCorrection, TweenInfo.new(2.5), {Contrast = 0}):Play()
+game:GetService('TweenService'):Create(game.Lighting.MainColorCorrection, TweenInfo.new(5), {
+    TintColor = Color3.fromRGB(255, 255, 255),
+}):Play()
+
+game.Players.LocalPlayer:WaitForChild('PlayerGui').MainUI.MainFrame.Caption.TextColor3 = Color3.fromRGB(3, 255, 11)
+
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption('Toxicity: +10%', true)
+task.wait(0)
+
+_G.stats.Value = _G.stats.Value + 10
+end
