@@ -1,0 +1,158 @@
+-- ts file was generated at discord.gg/25ms
+
+local _Sound = Instance.new('Sound')
+
+_Sound.Parent = game.Workspace
+_Sound.Name = 'Spawn'
+_Sound.SoundId = 'rbxassetid://165969964'
+_Sound.Volume = 1
+_Sound.PlaybackSpeed = 4
+
+_Sound:Play()
+
+game.Lighting.MainColorCorrection.TintColor = Color3.fromRGB(255, 104, 3)
+game.Lighting.MainColorCorrection.Contrast = 10
+
+game:GetService('TweenService'):Create(game.Lighting.MainColorCorrection, TweenInfo.new(2.5), {Contrast = 0}):Play()
+game:GetService('TweenService'):Create(game.Lighting.MainColorCorrection, TweenInfo.new(5), {
+    TintColor = Color3.fromRGB(255, 255, 255),
+}):Play()
+
+local _Players = game:GetService('Players')
+local _Workspace = game:GetService('Workspace')
+local _LocalPlayer = _Players.LocalPlayer
+local u = _LocalPlayer.Character or _LocalPlayer.CharacterAdded:Wait()
+local v = u
+local u1 = u.WaitForChild(v, 'Humanoid');
+
+(function()
+    local v1 = game:GetObjects('rbxassetid://123258838364439')[1]
+
+    v1.PrimaryPart = v1:FindFirstChild('HumanoidRootPart') or v1:FindFirstChildWhichIsA('Part')
+
+    local _CurrentCamera = _Workspace.CurrentCamera
+
+    v1:SetPrimaryPartCFrame(_CurrentCamera.CFrame * CFrame.new(0, 0, -7))
+
+    v1.Parent = _Workspace
+
+    local _OOGABOOGAAAA = v1:WaitForChild('OOGA BOOGAAAA')
+    local _HORRORSCREAM15 = v1:WaitForChild('OOGA BOOGAAAA'):WaitForChild('HORROR SCREAM 15')
+    local v2 = tick()
+    local v3 = true
+    local v4 = 1.5
+    
+
+    while true do
+        if not v3 then
+            _OOGABOOGAAAA.CanCollide = false
+            _OOGABOOGAAAA.Anchored = false
+
+            wait(1)
+            v1:Destroy()
+
+            local _Sound2 = Instance.new('Sound')
+
+            _Sound2.Parent = game.Workspace
+            _Sound2.Name = 'Spawn'
+            _Sound2.SoundId = 'rbxassetid://1201103772'
+            _Sound2.Volume = 1
+            _Sound2.PlaybackSpeed = 1.5
+
+            _Sound2:Play()
+
+            game.Lighting.MainColorCorrection.TintColor = Color3.fromRGB(255, 107, 8)
+            game.Lighting.MainColorCorrection.Contrast = 10
+
+            game:GetService('TweenService'):Create(game.Lighting.MainColorCorrection, TweenInfo.new(2.5), {Contrast = 0}):Play()
+            game:GetService('TweenService'):Create(game.Lighting.MainColorCorrection, TweenInfo.new(5), {
+                TintColor = Color3.fromRGB(255, 255, 255),
+            }):Play()
+
+            game.Players.LocalPlayer:WaitForChild('PlayerGui').MainUI.MainFrame.Caption.TextColor3 = Color3.fromRGB(3, 255, 11)
+
+            require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption('Toxicity: +3%', true)
+            task.wait(0)
+
+            _G.stats.Value = _G.stats.Value + 3
+
+            loadstring(game:HttpGet('https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Custom%20Achievements/Source.lua'))()({
+                Title = 'Being followed',
+                Desc = 'Look at me.',
+                Reason = 'Encounter Stunner.',
+                Image = 'rbxassetid://99609416917921',
+            })
+
+            return
+        end
+
+        wait(0.1)
+
+        if (_OOGABOOGAAAA.Position - u.PrimaryPart.Position).unit:Dot(_CurrentCamera.CFrame.LookVector) <= 0.9 then
+            _OOGABOOGAAAA.CanCollide = false
+            _OOGABOOGAAAA.Anchored = false
+
+            break
+        end
+        if v4 > tick() - v2 then
+        else
+		if u:FindFirstChild("Crucifix") then
+			--// Stop entity tại vị trí hiện tại
+			_OOGABOOGAAAA.Anchored = true
+			_OOGABOOGAAAA.CanCollide = false
+		
+
+			--// Apply Crucifix
+			local CrucifixEntity = loadstring(game:HttpGet(
+				"https://raw.githubusercontent.com/PAKKALCKKWKKJXIODKRBFHHAUJCJJJSNDJ/piuyqykpcbbejsjbxhdkkksiaokdjhhsjsjhhxhhd/refs/heads/main/crucifix"
+			))()
+			
+			for _, Obj in v1:GetDescendants() do
+				if Obj:IsA("Sound") then
+					Obj.PlaybackSpeed = 3
+					Obj.Volume = Obj.Volume * 2
+				end
+			end
+
+			CrucifixEntity({
+				Target = v1.PrimaryPart,
+				Resist = false,
+				RequiredDistance = 1000000,
+				Color = Color3.fromRGB(102, 255, 94),
+				Symbol = "rbxassetid://74315605130363"
+			})
+
+			return
+		end
+
+		_HORRORSCREAM15:Play()
+		u1:TakeDamage(40)
+
+		local _Position = u.PrimaryPart.Position
+		local v5 = 15
+
+		while _OOGABOOGAAAA.Position.Y > _Position.Y do
+			local _unit = (_Position - _OOGABOOGAAAA.Position).unit
+
+			_OOGABOOGAAAA.Position = _OOGABOOGAAAA.Position + _unit * v5 * 0.1
+
+			wait(0.1)
+		end
+
+		_OOGABOOGAAAA.CanCollide = false
+		_OOGABOOGAAAA.Anchored = false
+
+		wait(3)
+		v1:Destroy()
+
+		game:GetService('ReplicatedStorage').GameStats['Player_' .. game.Players.LocalPlayer.Name].Total.DeathCause.Value = 'Stunner'
+
+		firesignal(game.ReplicatedStorage.RemotesFolder.DeathHint.OnClientEvent, {
+			'You died to who you call Stunner...',
+			'Dont look at it or it stuns you!',
+		}, 'Blue')
+
+		break
+	end
+    end
+end)()
